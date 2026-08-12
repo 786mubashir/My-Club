@@ -6,6 +6,7 @@ import com.club.club_management.service.AuthService;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import jakarta.validation.Valid;
 
@@ -39,6 +40,15 @@ public class AuthController {
         
         return ResponseEntity.ok(response);
 }
-    
 
+    @RestController
+    @RequestMapping("/api/test")
+    public class TestController {
+
+        @GetMapping
+        public ResponseEntity<String> test() {
+            return ResponseEntity.ok("JWT authentication is working");
+        }
+    }
 }
+
