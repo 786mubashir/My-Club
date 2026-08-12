@@ -37,6 +37,9 @@ public class Club {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(name = "isactive", nullable = false)
+    private boolean isActive = true;
+
     // Constructors
 
     public Club() {
@@ -72,6 +75,10 @@ public class Club {
         return createdAt;
     }
 
+    public boolean getIsActive(){
+        return isActive;
+    }
+
     // Setters
 
 // public void setId(Long id) {
@@ -100,5 +107,9 @@ public class Club {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public void setIsActive(boolean isActive){
+        this.isActive = isActive;
     }
 }
