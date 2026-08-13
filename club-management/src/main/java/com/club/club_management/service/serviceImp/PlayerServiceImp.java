@@ -7,10 +7,12 @@ import com.club.club_management.entity.Users;
 import com.club.club_management.repository.ClubRepository;
 import com.club.club_management.repository.PlayerRepository;
 import com.club.club_management.service.PlayerService;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Service
 public class PlayerServiceImp implements PlayerService {
 
     private PlayerRepository playerRepository;
