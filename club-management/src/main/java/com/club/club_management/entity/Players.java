@@ -13,28 +13,22 @@ public class Players {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     // user_id
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private Users user;
 
     // club_id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "club_id", nullable = false)
     private Club club;
 
-    // dominant_foot
-   public enum DominantFoot {
-    LEFT,
-    RIGHT,
-    BOTH
-}
 
-@Enumerated(EnumType.STRING)
-@Column(name = "dominant_foot", nullable = false)
-private DominantFoot dominantFoot;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "dominant_foot", nullable = false)
+    private DominantFoot dominantFoot;
 
     // position
     @Column(length = 30)
@@ -62,4 +56,67 @@ private DominantFoot dominantFoot;
     private LocalDateTime createdAt;
 
     // Getters and Setters
+
+    public Players(){
+    }
+
+    public Long getId(){
+        return id;
+    }
+
+    public Users getUser(){
+        return user;
+    }
+
+    public void setUser(Users user){
+        this.user = user;
+    }
+
+    public Club getClub(){
+        return club;
+    }
+
+    public void setClub(Club club){
+        this.club = club;
+    }
+
+    public DominantFoot getDominantFoot(){
+        return dominantFoot;
+    }
+
+    public String getPosition(){
+        return position;
+    }
+
+    public void setPosition(String position){
+        this.position = position;
+    }
+
+    public LocalDate getJoinedOn(){
+        return joinedOn;
+    }
+
+    public String getCategory(){
+        return category;
+    }
+
+    public void setCategory(String category){
+        this.category = category;
+    }
+
+    public Boolean getActive(){
+        return active;
+    }
+
+    public void setActive(Boolean active){
+        this.active = active;
+    }
+
+    public LocalDateTime getCreateAt(){
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt){
+        this.createdAt = createdAt;
+    }
 }
