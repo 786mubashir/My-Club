@@ -13,7 +13,7 @@ public class Players {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     // user_id
     @OneToOne(fetch = FetchType.LAZY)
@@ -60,7 +60,7 @@ public class Players {
     public Players(){
     }
 
-    public Long getId(){
+    public Integer getId(){
         return id;
     }
 
@@ -119,4 +119,16 @@ public class Players {
     public void setCreatedAt(LocalDateTime createdAt){
         this.createdAt = createdAt;
     }
+
+    public  void setDominantFoot(DominantFoot dominantFoot){
+        this.dominantFoot =dominantFoot;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth){
+        this.dateOfBirth =dateOfBirth;
+    }
+    public LocalDate getDateOfBirth(){
+        return dateOfBirth;
+    }
+
 }
