@@ -33,7 +33,7 @@ public class Invitations {
     private LocalDateTime expiresAt;
 
     @Column(nullable = false)
-    private boolean accepted = false;
+    private Boolean accepted = false;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -78,5 +78,8 @@ public class Invitations {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
-    
+
+    public boolean getAccepted() {
+        return accepted;
+    }
 }
