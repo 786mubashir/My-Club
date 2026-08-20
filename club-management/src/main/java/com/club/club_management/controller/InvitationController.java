@@ -5,6 +5,7 @@ import com.club.club_management.entity.Users;
 import com.club.club_management.service.InvitationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public class InvitationController {
 //
 //        return ResponseEntity.ok("Controller reached");
 //    }
-
+    @PreAuthorize("hasRole('MANAGER')")
     @PostMapping
     public ResponseEntity<Invitations> createInvitation(@RequestParam String email, Authentication authentication){
         Users manager = (Users) authentication.getPrincipal();

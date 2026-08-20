@@ -1,5 +1,6 @@
 package com.club.club_management.controller;
 
+import com.club.club_management.dto.request.PlayerRegisterRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.club.club_management.service.AuthService;
@@ -49,6 +50,17 @@ public class AuthController {
         public ResponseEntity<String> test() {
             return ResponseEntity.ok("JWT authentication is working");
         }
+    }
+
+    @PostMapping("/register/player")
+    public ResponseEntity<String> registerPlayer(
+            @Valid @RequestBody PlayerRegisterRequest request) {
+
+        authService.registerPlayer(request);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body("Player registered successfully");
     }
 }
 
