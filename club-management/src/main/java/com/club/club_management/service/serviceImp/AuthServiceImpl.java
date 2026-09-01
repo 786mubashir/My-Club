@@ -124,7 +124,18 @@ public class AuthServiceImpl implements AuthService {
     public LoginResponse login(LoginRequest request){
         Users currentUser = usersRepository.findByEmail(request.getEmail())
             .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
-        if (!passwordEncoder.matches(request.getPassword(), currentUser.getPassword())) {
+        System.out.println("EMAIL: " + request.getEmail());
+        System.out.println("USER FOUND: " + currentUser.getEmail());
+        System.out.println("PASSWORD HASH EXISTS: " + (currentUser.getPassword() != null));
+
+        boolean matches = passwordEncoder.matches(
+                request.getPassword(),
+                currentUser.getPassword()
+        );
+
+        System.out.println("PASSWORD MATCH: " + matches);
+
+        if (!matches) {
             throw new IllegalArgumentException("Invalid email or password");
         }
         String token = jwtService.generateToken(currentUser.getEmail());
@@ -133,4 +144,40 @@ public class AuthServiceImpl implements AuthService {
 
     }
 
+//    @Override
+//    public LoginResponse login(LoginRequest request) {
+//
+//        System.out.println("LOGIN EMAIL: " + request.getEmail());
+//
+//        Users currentUser = usersRepository.findByEmail(request.getEmail())
+//                .orElseThrow(() ->
+//                        new IllegalArgumentException("Invalid email or password"));
+//
+//        System.out.println("USER FOUND: " + currentUser.getEmail());
+//
+//        System.out.println(
+//                "PASSWORD MATCH: " +
+//                        passwordEncoder.matches(
+//                                request.getPassword(),
+//                                currentUser.getPassword()
+//                        )
+//        );
+//
+//        if (!passwordEncoder.matches(
+//                request.getPassword(),
+//                currentUser.getPassword())) {
+//
+//            throw new IllegalArgumentException(
+//                    "Invalid email or password"
+//            );
+//        }
+//
+//        String token = jwtService.generateToken(
+//                currentUser.getEmail()
+//        );
+//
+//        System.out.println("JWT GENERATED");
+//
+//        return new LoginResponse(token);
+//    }
 }
