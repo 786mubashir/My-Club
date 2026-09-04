@@ -105,7 +105,12 @@ public class Users implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.getName()));
+        String roleName = role.getName();
+        String authority = roleName.startsWith("ROLE_")
+                ? roleName
+                : "ROLE_" + roleName;
+
+        return List.of(new SimpleGrantedAuthority(authority));
     }
 
 
